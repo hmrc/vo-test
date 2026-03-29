@@ -20,9 +20,6 @@ import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, get, getReque
 import play.api.test.Helpers.OK
 import uk.gov.hmrc.vo.unit.test.BaseSpec
 
-import java.net.URI
-import java.net.http.{HttpClient, HttpRequest, HttpResponse}
-
 /**
   * @author Yuriy Tumakha
   */
@@ -37,8 +34,7 @@ class HttpWireMockSpec extends BaseSpec with HttpWireMock:
           .willReturn(aResponse().withStatus(OK).withBody("OK"))
       )
 
-      val request  = HttpRequest.newBuilder.uri(URI(s"$wireMockBaseUrl$testEndpoint")).GET.build
-      val response = HttpClient.newHttpClient.send(request, HttpResponse.BodyHandlers.ofString)
+      val response = httpGet(s"$wireMockBaseUrl$testEndpoint")
 
       response.statusCode shouldBe OK
       response.body       shouldBe "OK"

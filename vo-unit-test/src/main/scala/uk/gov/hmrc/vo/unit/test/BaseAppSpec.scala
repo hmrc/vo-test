@@ -17,6 +17,7 @@
 package uk.gov.hmrc.vo.unit.test
 
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import play.api.mvc.request.RequestTarget
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 
@@ -30,3 +31,11 @@ abstract class BaseAppSpec extends BaseSpec with GuiceOneAppPerSuite with Inject
   val putRequest    = FakeRequest(PUT, "/")
   val patchRequest  = FakeRequest(PATCH, "/")
   val deleteRequest = FakeRequest(DELETE, "/")
+
+  extension [A](fakeRequest: FakeRequest[A])
+
+    def withQueryParams(params: (String, String)*): FakeRequest[A] =
+      val paramsMap = params.map {
+        case (name, value) => name -> Seq(value)
+      }.toMap
+      fakeRequest.withTarget(RequestTarget("", "", paramsMap))

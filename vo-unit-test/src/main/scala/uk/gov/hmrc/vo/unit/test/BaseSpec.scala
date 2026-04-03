@@ -46,6 +46,7 @@ abstract class BaseSpec
   with ScalaCheckPropertyChecks
   with TableDrivenPropertyChecks
   with PlainJavaHttpClient
+  with StringExtension
   with HtmlAssertions
   with Logging:
 

@@ -23,4 +23,4 @@ trait StringExtension:
 
   extension (string: String)
 
-    def trimEmptyLines: String = string.replace("\n", "").replace("\r", "")
+    def trimEmptyLines(replaceWith: String = ""): String = string.replace("\n", replaceWith).replace("\r", replaceWith)

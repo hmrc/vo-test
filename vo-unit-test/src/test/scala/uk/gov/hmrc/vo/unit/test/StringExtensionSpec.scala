@@ -34,10 +34,10 @@ class StringExtensionSpec extends BaseSpec:
     "have a method .trimEmptyLines that trims empty lines from generated strings" in
       forAll {
         (str: String) =>
-          str.trimEmptyLines shouldBe str.replace("\n", "").replace("\r", "")
+          str.trimEmptyLines(" ") shouldBe str.replace("\n", " ").replace("\r", " ")
       }
 
     "have a method .trimEmptyLines that trims empty lines from a given String" in {
-      stringWithEmptyLines.trimEmptyLines shouldBe trimmedString
+      stringWithEmptyLines.trimEmptyLines() shouldBe trimmedString
     }
   }

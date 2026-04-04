@@ -24,7 +24,7 @@ class TestBaseApp extends BaseAppSpec:
   "BaseAppSpec" should {
     "provide messagesApi by InjectedAppObjects" in {
 
-      println(messagesApi.messages)
+      logger.info("\n" + messagesApi.messages)
 
       val messages = messagesApi.preferred(Seq.empty)
       messages.lang.language shouldBe "en"

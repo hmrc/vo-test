@@ -23,4 +23,8 @@ trait StringExtension:
 
   extension (string: String)
 
-    def trimEmptyLines(replaceWith: String = ""): String = string.replace("\n", replaceWith).replace("\r", replaceWith)
+    def trimEmptyLines: String =
+      string.linesIterator.map(_.trim).filter(_.nonEmpty).mkString("\n")
+
+    def replaceEndLinesWith(replaceWith: String = " "): String =
+      string.replace("\r\n", replaceWith).replace("\r", replaceWith).replace("\n", replaceWith)

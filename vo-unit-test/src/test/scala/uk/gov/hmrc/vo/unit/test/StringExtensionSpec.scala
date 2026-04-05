@@ -17,27 +17,35 @@
 package uk.gov.hmrc.vo.unit.test
 
 /**
- * @author Yuriy Tumakha
- */
+  * @author Yuriy Tumakha
+  */
 class StringExtensionSpec extends BaseSpec:
 
   private val stringWithEmptyLines = s"""
-                                |<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" />
-                                |
-                                |
-                                |<p>Some text </p>
-                                |""".stripMargin
+                                        |<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" />
+                                        |
+                                        |
+                                        |<p>Some text </p>
+                                        |""".stripMargin
 
-  private val trimmedString = """<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" /><p>Some text </p>"""
+  private val trimmedString            = s"""<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" />\n<p>Some text </p>"""
+  private val replacedEndLineWithSpace = """<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" /><p>Some text </p>"""
 
-  "String extension .trimEmptyLines" should {
+  "String extension" should {
     "have a method .trimEmptyLines that trims empty lines from generated strings" in
       forAll {
         (str: String) =>
-          str.trimEmptyLines(" ") shouldBe str.replace("\n", " ").replace("\r", " ")
+          str.trimEmptyLines shouldBe str.linesIterator.map(_.trim).filter(_.nonEmpty).mkString("\n")
       }
 
     "have a method .trimEmptyLines that trims empty lines from a given String" in {
-      stringWithEmptyLines.trimEmptyLines() shouldBe trimmedString
+      stringWithEmptyLines.trimEmptyLines shouldBe trimmedString
     }
+
+    "have a method .replaceEndLinesWith that replace end line chars with specified String" in {
+      "aaa\n<bbb>\r\nccc\n".replaceEndLinesWith()   shouldBe "aaa <bbb> ccc "
+      "aaa\n<bbb>\r\nccc\n".replaceEndLinesWith("") shouldBe "aaa<bbb>ccc"
+      stringWithEmptyLines.replaceEndLinesWith("")  shouldBe replacedEndLineWithSpace
+    }
+
   }

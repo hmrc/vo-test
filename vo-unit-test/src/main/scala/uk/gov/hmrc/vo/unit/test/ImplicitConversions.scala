@@ -26,7 +26,7 @@ import scala.language.implicitConversions
   */
 trait ImplicitConversions:
 
-  given toOption[A]: Conversion[A, Option[A]] = Some(_)
+  implicit def toOpt[A](a: A): Option[A] = Some(a)
 
   given stringToUrl: Conversion[String, URL] = URI(_).toURL
 

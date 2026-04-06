@@ -19,7 +19,6 @@ package uk.gov.hmrc.vo.unit.test
 import play.twirl.api.Html
 
 import java.net.{URI, URL}
-import scala.concurrent.Future
 import scala.language.implicitConversions
 
 /**
@@ -28,8 +27,6 @@ import scala.language.implicitConversions
 trait ImplicitConversions:
 
   given toOption[A]: Conversion[A, Option[A]] = Some(_)
-
-  given toFuture[A]: Conversion[A, Future[A]] = Future.successful(_)
 
   given stringToUrl: Conversion[String, URL] = URI(_).toURL
 

@@ -19,7 +19,6 @@ package uk.gov.hmrc.vo.unit.test
 import play.twirl.api.Html
 
 import java.net.URL
-import scala.concurrent.Future
 import scala.language.implicitConversions
 import uk.gov.hmrc.http.StringContextOps
 
@@ -37,17 +36,6 @@ class ImplicitConversionsSpec extends BaseSpec:
         (str: String) =>
           val opt: Option[String] = str
           opt shouldBe Some(str)
-      }
-    }
-
-    "convert to successful Future" in {
-      val future: Future[Int] = 8
-      future.futureValue shouldBe 8
-
-      forAll {
-        (str: String) =>
-          val future: Future[String] = str
-          future.futureValue shouldBe Future.successful(str).futureValue
       }
     }
 

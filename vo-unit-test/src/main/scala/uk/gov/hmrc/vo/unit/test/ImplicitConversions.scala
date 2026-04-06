@@ -26,7 +26,7 @@ import scala.language.implicitConversions
   */
 trait ImplicitConversions:
 
-  implicit def toOpt[A](a: A): Option[A] = Some(a)
+  given toOption[A]: Conversion[A, Option[A]] = Some(_)
 
   given stringToUrl: Conversion[String, URL] = URI(_).toURL
 
@@ -39,3 +39,5 @@ trait ImplicitConversions:
   given intToBigDecimal: Conversion[Int, BigDecimal] = BigDecimal(_)
 
   given intToBigDecimalOpt: Conversion[Int, Option[BigDecimal]] = intToBigDecimal(_)
+
+object ImplicitConversions extends ImplicitConversions

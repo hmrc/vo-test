@@ -25,7 +25,7 @@ import uk.gov.hmrc.http.StringContextOps
 /**
  * @author Yuriy Tumakha
  */
-class ImplicitConversionsSpec extends BaseSpec:
+class ImplicitConversionsSpec extends BaseSpec with ImplicitConversions:
 
   "ImplicitConversions" should {
     "convert to Option" in {

@@ -35,7 +35,7 @@ class StringExtensionSpec extends BaseSpec:
     "have a method .trimEmptyLines that trims empty lines from generated strings" in
       forAll {
         (str: String) =>
-          str.trimEmptyLines shouldBe str.linesIterator.filter(_.trim.nonEmpty).mkString("\n")
+          str.trimEmptyLines shouldBe str.linesIterator.filterNot(_.trim.isEmpty).mkString("\n")
       }
 
     "have a method .trimEmptyLines that trims empty lines from a given String" in {

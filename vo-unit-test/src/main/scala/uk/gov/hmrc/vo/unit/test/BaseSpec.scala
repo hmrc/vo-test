@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets
 abstract class BaseSpec
   extends AnyWordSpec
   with should.Matchers
+  with ImplicitConversions
   with HttpClientMocks
   with OptionValues
   with EitherValues

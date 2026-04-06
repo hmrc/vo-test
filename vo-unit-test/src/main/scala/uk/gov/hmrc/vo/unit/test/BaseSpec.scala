@@ -36,7 +36,6 @@ abstract class BaseSpec
   with should.Matchers
   with ImplicitConversions
   with HttpClientMocks
-  with OptionValues
   with EitherValues
   with ScalaFutures
   with IntegrationPatience

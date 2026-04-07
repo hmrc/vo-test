@@ -19,15 +19,12 @@ package uk.gov.hmrc.vo.unit.test
 /**
   * @author Yuriy Tumakha
   */
-class TestBaseApp extends BaseAppSpec:
+trait StringExtension:
 
-  "BaseAppSpec" should {
-    "provide messagesApi by InjectedAppObjects" in {
+  extension (string: String)
 
-      logger.info("\n" + messagesApi.messages)
+    def trimEmptyLines: String =
+      string.linesIterator.filter(_.trim.nonEmpty).mkString("\n")
 
-      val messages = messagesApi.preferred(Seq.empty)
-      messages.lang.language shouldBe "en"
-      messages("error.date") shouldBe "Valid date required"
-    }
-  }
+    def replaceEndLinesWith(replaceWith: String = " "): String =
+      string.replace("\r\n", replaceWith).replace("\r", replaceWith).replace("\n", replaceWith)

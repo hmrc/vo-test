@@ -19,11 +19,12 @@ package uk.gov.hmrc.vo.integration.test
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, Suite}
+import play.api.Logging
 
 /**
   * @author Yuriy Tumakha
   */
-trait HttpWireMock extends BeforeAndAfterAll with BeforeAndAfterEach:
+trait HttpWireMock extends BeforeAndAfterAll with BeforeAndAfterEach with Logging:
 
   this: Suite =>
 
@@ -33,7 +34,7 @@ trait HttpWireMock extends BeforeAndAfterAll with BeforeAndAfterEach:
         .dynamicPort()
     )
     server.start()
-    println(s"WireMock port: ${server.port}")
+    logger.info(s"\nWireMock port: ${server.port}")
     server
 
   val wireMockBaseUrl = s"http://localhost:${wireMockServer.port}"

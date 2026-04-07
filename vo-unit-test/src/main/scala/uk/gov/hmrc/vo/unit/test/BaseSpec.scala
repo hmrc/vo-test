@@ -35,7 +35,6 @@ abstract class BaseSpec
   extends AnyWordSpec
   with should.Matchers
   with HttpClientMocks
-  with OptionValues
   with EitherValues
   with ScalaFutures
   with IntegrationPatience
@@ -46,6 +45,7 @@ abstract class BaseSpec
   with ScalaCheckPropertyChecks
   with TableDrivenPropertyChecks
   with PlainJavaHttpClient
+  with StringExtension
   with HtmlAssertions
   with Logging:
 

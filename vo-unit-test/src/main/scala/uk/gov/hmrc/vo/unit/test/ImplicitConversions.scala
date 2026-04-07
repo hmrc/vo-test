@@ -16,18 +16,28 @@
 
 package uk.gov.hmrc.vo.unit.test
 
+import play.twirl.api.Html
+
+import java.net.{URI, URL}
+import scala.language.implicitConversions
+
 /**
   * @author Yuriy Tumakha
   */
-class TestBaseApp extends BaseAppSpec:
+trait ImplicitConversions:
 
-  "BaseAppSpec" should {
-    "provide messagesApi by InjectedAppObjects" in {
+  given toOption[A]: Conversion[A, Option[A]] = Some(_)
 
-      logger.info("\n" + messagesApi.messages)
+  given stringToUrl: Conversion[String, URL] = URI(_).toURL
 
-      val messages = messagesApi.preferred(Seq.empty)
-      messages.lang.language shouldBe "en"
-      messages("error.date") shouldBe "Valid date required"
-    }
-  }
+  given stringToUrlOpt: Conversion[String, Option[URL]] = stringToUrl(_)
+
+  given stringToHtml: Conversion[String, Html] = Html(_)
+
+  given stringToHtmlOpt: Conversion[String, Option[Html]] = stringToHtml(_)
+
+  given intToBigDecimal: Conversion[Int, BigDecimal] = BigDecimal(_)
+
+  given intToBigDecimalOpt: Conversion[Int, Option[BigDecimal]] = intToBigDecimal(_)
+
+object ImplicitConversions extends ImplicitConversions

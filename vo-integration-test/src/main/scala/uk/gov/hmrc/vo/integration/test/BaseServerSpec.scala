@@ -25,6 +25,6 @@ import uk.gov.hmrc.vo.unit.test.{BaseSpec, InjectedAppObjects}
   */
 abstract class BaseServerSpec extends BaseSpec with HttpWireMock with GuiceOneServerPerSuite with InjectedAppObjects with WsScalaTestClient:
 
-  println(s"Play server port: $port")
+  logger.info(s"\nPlay server port: $port")
 
   val serverBaseUrl = s"http://localhost:$port"

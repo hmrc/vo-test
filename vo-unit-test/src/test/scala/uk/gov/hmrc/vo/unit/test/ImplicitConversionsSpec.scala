@@ -23,8 +23,8 @@ import scala.language.implicitConversions
 import uk.gov.hmrc.http.StringContextOps
 
 /**
- * @author Yuriy Tumakha
- */
+  * @author Yuriy Tumakha
+  */
 class ImplicitConversionsSpec extends BaseSpec with ImplicitConversions:
 
   "ImplicitConversions" should {
@@ -51,24 +51,24 @@ class ImplicitConversionsSpec extends BaseSpec with ImplicitConversions:
 
     "convert String to Html" in {
       val content: String = "<h1>Page header</h1>"
-      val html: Html = content
+      val html: Html      = content
       html.body shouldBe content
     }
 
     "convert String to Option[Html]" in {
-      val content: String = "<b>Bold text</b>"
+      val content: String       = "<b>Bold text</b>"
       val htmlOpt: Option[Html] = content
       htmlOpt shouldBe Some(Html(content))
     }
 
     "convert Int to BigDecimal" in {
-      val number: Int = 123456
+      val number: Int            = 123456
       val bigDecimal: BigDecimal = number
       bigDecimal.intValue shouldBe number
     }
 
     "convert Int to Option[BigDecimal]" in {
-      val number: Int = 777
+      val number: Int                       = 777
       val bigDecimalOpt: Option[BigDecimal] = number
       bigDecimalOpt shouldBe Some(BigDecimal(number))
     }

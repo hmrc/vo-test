@@ -17,8 +17,8 @@
 package uk.gov.hmrc.vo.unit.test
 
 /**
- * @author Yuriy Tumakha
- */
+  * @author Yuriy Tumakha
+  */
 trait StringExtension:
 
   extension (string: String)

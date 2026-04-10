@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.vo.unit.test
 
+import play.api.i18n.Messages
+
 /**
   * @author Yuriy Tumakha
   */
@@ -27,6 +29,12 @@ class TestBaseApp extends BaseAppSpec:
       logger.info("\n" + messagesApi.messages)
 
       val messages = messagesApi.preferred(Seq.empty)
+      messages.lang.language shouldBe "en"
+      messages("error.date") shouldBe "Valid date required"
+    }
+
+    "provide implicit Messages by InjectedAppObjects" in {
+      val messages: Messages = implicitly[Messages]
       messages.lang.language shouldBe "en"
       messages("error.date") shouldBe "Valid date required"
     }

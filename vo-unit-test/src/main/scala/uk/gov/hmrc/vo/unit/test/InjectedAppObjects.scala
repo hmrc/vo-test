@@ -17,7 +17,7 @@
 package uk.gov.hmrc.vo.unit.test
 
 import play.api.Configuration
-import play.api.i18n.MessagesApi
+import play.api.i18n.{Messages, MessagesApi}
 import play.api.libs.ws.WSClient
 import play.api.mvc.{AnyContent, BodyParser, BodyParsers}
 import play.api.test.{HasApp, Injecting}
@@ -43,3 +43,5 @@ trait InjectedAppObjects extends Injecting:
   val messagesApi: MessagesApi = inject[MessagesApi]
 
   val bodyParser: BodyParser[AnyContent] = inject[BodyParsers.Default]
+
+  given messages: Messages = messagesApi.preferred(Seq.empty)

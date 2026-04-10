@@ -24,8 +24,8 @@ trait StringExtension:
   extension (string: String)
 
     /**
-     * Replace multiple whitespace characters (spaces, tabs, newlines) with a single space and trim leading/trailing whitespace.
-     */
+      * Replace multiple whitespace characters (spaces, tabs, newlines) with a single space and trim leading/trailing whitespace.
+      */
     def normalizeWhitespace: String =
       string.replaceAll("\\s+", " ").trim
 

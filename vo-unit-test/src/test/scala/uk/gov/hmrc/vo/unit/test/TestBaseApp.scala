@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.vo.unit.test
 
+import play.api.i18n.Messages
+
 /**
   * @author Yuriy Tumakha
   */
@@ -30,4 +32,22 @@ class TestBaseApp extends BaseAppSpec:
       messages.lang.language shouldBe "en"
       messages("error.date") shouldBe "Valid date required"
     }
+
+    "provide implicit Messages by InjectedAppObjects" in {
+      val messages: Messages = implicitly[Messages]
+      messages.lang.language shouldBe "en"
+      messages("error.date") shouldBe "Valid date required"
+    }
+
+    "provide stub Messages" in {
+      val messages = stubMessages(
+        "message.key.1"               -> "Value 1",
+        "section1.page3.field1.label" -> "Field1 label"
+      )
+      messages.lang.language shouldBe "en"
+      messages("message.key.1")               shouldBe "Value 1"
+      messages("section1.page3.field1.label") shouldBe "Field1 label"
+      messages.isDefinedAt("error.date")      shouldBe false
+    }
+
   }

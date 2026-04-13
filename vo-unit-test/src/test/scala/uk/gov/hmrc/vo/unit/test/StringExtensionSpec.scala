@@ -28,10 +28,15 @@ class StringExtensionSpec extends BaseSpec:
                                         |    <p>Some text </p>
                                         |""".stripMargin
 
+  private val normalizedString         = """<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" /> <p>Some text </p>"""
   private val trimmedString            = s"""<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" />\n    <p>Some text </p>"""
   private val replacedEndLineWithSpace = """<link href="stylesheet/extra-cool.css" media="all" rel="stylesheet" type="text/css" />    <p>Some text </p>"""
 
   "String extension" should {
+    "method .normalizeWhitespace to replace multiple whitespace characters with a single space and trim leading/trailing whitespace" in {
+      stringWithEmptyLines.normalizeWhitespace shouldBe normalizedString
+    }
+
     "have a method .trimEmptyLines that trims empty lines from generated strings" in
       forAll {
         (str: String) =>

@@ -27,7 +27,7 @@ import uk.gov.hmrc.vo.unit.test.BaseAppSpec
 
 import scala.reflect.ClassTag
 
-class MongoDBAppSpec[E, R <: PlayMongoRepository[E]: ClassTag] extends BaseAppSpec with DefaultPlayMongoRepositorySupport[E]:
+abstract class MongoDBAppSpec[E, R <: PlayMongoRepository[E]: ClassTag] extends BaseAppSpec with DefaultPlayMongoRepositorySupport[E]:
 
   override def fakeApplication(): Application =
     new GuiceApplicationBuilder()

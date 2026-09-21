@@ -4,7 +4,7 @@ import sbt.*
 private object LibDependencies {
 
   private val bootstrapVersion               = "10.8.0"
-  private val hmrcMongoVersion               = "2.13.0"
+  private val hmrcMongoVersion               = "2.14.0"
   private val scalaTestVersion               = "3.2.20"
   private val scalaTestPlusScalaCheckVersion = "3.2.20.0"
   private val scalaTestPlusMockitoVersion    = "3.2.20.0"
